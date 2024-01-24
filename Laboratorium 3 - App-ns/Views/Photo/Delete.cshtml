@@ -1,0 +1,10 @@
+﻿@model Laboratorium_3___App_ns.Models.Photo
+
+<h2>Usuwanie Zdjęcia</h2>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Czy na pewno chcesz usunąć to zdjęcie?</p>
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>

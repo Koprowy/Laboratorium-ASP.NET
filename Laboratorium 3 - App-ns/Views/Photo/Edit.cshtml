@@ -1,0 +1,14 @@
+﻿@model Laboratorium_3___App_ns.Models.Photo
+
+<h2>Edycja Zdjęcia</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="DateTaken">Data i Godzina</label>
+        <input asp-for="DateTaken" class="form-control" />
+        <span asp-validation-for="DateTaken" class="text-danger"></span>
+    </div>
+    <!-- Dodaj pozostałe pola modelu Photo podobnie jak powyżej -->
+    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+</form>

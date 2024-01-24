@@ -1,0 +1,13 @@
+﻿@model Laboratorium_3___App_ns.Models.Photo
+
+<h2>Photo Details</h2>
+
+<div>
+    <h4>Date Taken:</h4>
+    <p>@Model.DateTaken.ToString("yyyy-MM-dd HH:mm")</p>
+    <h4>Description:</h4>
+    <p>@Model.Description</p>
+    <!-- Wyświetl pozostałe szczegóły -->
+</div>
+
+<a asp-action="Index">Back to List</a>

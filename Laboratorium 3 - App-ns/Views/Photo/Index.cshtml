@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Laboratorium_3___App_ns.Models.Photo>
+
+<h2>Lista Zdjęć</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data i Godzina</th>
+            <th>Opis</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var photo in Model)
+        {
+                <tr>
+                    <td>@photo.DateTaken.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@photo.Description</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@photo.Id">Szczegóły</a> |
+                        <a asp-action="Edit" asp-route-id="@photo.Id">Edytuj</a> |
+                        <a asp-action="Delete" asp-route-id="@photo.Id">Usuń</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
