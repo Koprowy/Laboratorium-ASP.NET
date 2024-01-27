@@ -7,13 +7,20 @@ namespace Laboratorium_3___App_ns.Controllers
     {
         private static List<Photo> photos = new List<Photo>();
         private static int nextId = 1;
+        private readonly IPhotoService _photoService;
+
+        public PhotoController(IPhotoService photoService)
+        {
+            _photoService = photoService;
+        }
 
         [HttpPost]
         public IActionResult Create(Photo photo)
         {
             if (ModelState.IsValid)
             {
-                // Tutaj logika dodawania zdjęcia do bazy danych lub kolekcji
+                photo.Id = nextId++;
+                photos.Add(photo);
                 return RedirectToAction("Index"); // Przekierowanie do widoku listy zdjęć
             }
 
@@ -54,6 +61,15 @@ namespace Laboratorium_3___App_ns.Controllers
             }
 
             return View(photo);
+        }
+        public IActionResult Index()
+        {
+            return View(photos);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
         }
 
     }

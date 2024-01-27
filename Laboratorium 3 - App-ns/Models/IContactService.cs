@@ -2,7 +2,7 @@
 {
     public interface IContactService
     {
-        void Add(Contact contact);
+        int Add(Contact contact);
         void RemoveById(int Id);
         void Update(Contact contact);
         List<Contact> FindAll();

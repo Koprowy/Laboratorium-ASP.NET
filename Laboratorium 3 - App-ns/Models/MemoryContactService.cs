@@ -8,11 +8,22 @@
             {2, new Contact() {Id = 2, Name = "Ola", Email = "Ola@wsei.edu.pl",Phone = 222444555, Birth = new DateTime(2003,3,21) } }
         };
         private int Id = 3;
+        private readonly IDateTimeProvider _timeProvider;
 
-        public void Add(Contact contact)
+        public MemoryContactService(IDateTimeProvider timeProvider)
         {
-            contact.Id = Id++;
-            _items[contact.Id] = contact;
+            _timeProvider = timeProvider;
+        }
+
+
+        public int Add(Contact contact)
+        {
+            contact.Id = Id++;  
+            contact.Created = _timeProvider.GetCurrentDateTime();  
+
+            _items[contact.Id] = contact;  
+
+            return contact.Id;  
         }
 
         public Contact? Find(int id)

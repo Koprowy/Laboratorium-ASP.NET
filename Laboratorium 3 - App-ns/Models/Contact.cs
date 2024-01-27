@@ -16,5 +16,9 @@ namespace Laboratorium_3___App_ns.Models
         public int Phone { get; set; }
         [DataType(DataType.Date)]
         public DateTime Birth { get; set; }
+        [Display(Name = "Priorytet")]
+        public Priority Priority { get; set; }
+        [HiddenInput]
+        public DateTime Created { get; set; }
     }
 }
