@@ -1,4 +1,5 @@
 using Laboratorium_3___App_ns.Models;
+using System.Xml.Linq;
 
 namespace Laboratorium_3___App_ns
 {
@@ -9,6 +10,9 @@ namespace Laboratorium_3___App_ns
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<Data.AppDbContext>();
+            builder.Services.AddTransient<IContactService, EFContactService>();
+            builder.Services.AddTransient<IPhotoService, EFPhotoService>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IContactService, MemoryContactService>();
             builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();

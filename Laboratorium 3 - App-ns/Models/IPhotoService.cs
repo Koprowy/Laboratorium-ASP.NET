@@ -6,7 +6,7 @@
         void Delete(int photoId);
         void Update(Photo photo);
         Photo GetById(int photoId);
-        IEnumerable<Photo> GetByCategory(PhotoCategory category);
+        IEnumerable<Photo> GetAll();
 
     }
 }

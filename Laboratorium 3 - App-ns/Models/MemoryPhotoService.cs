@@ -44,9 +44,9 @@ namespace Laboratorium_3___App_ns.Models
             return _photos.FirstOrDefault(p => p.Id == photoId);
         }
 
-        public IEnumerable<Photo> GetByCategory(PhotoCategory category)
+        public IEnumerable<Photo> GetAll()
         {
-            return _photos.Where(p => p.Category == category).ToList();
+            return _photos;
         }
     }
 }
