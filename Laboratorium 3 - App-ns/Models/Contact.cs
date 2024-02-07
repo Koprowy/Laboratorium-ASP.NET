@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace Laboratorium_3___App_ns.Models
@@ -20,5 +22,10 @@ namespace Laboratorium_3___App_ns.Models
         public Priority Priority { get; set; }
         [HiddenInput]
         public DateTime Created { get; set; }
+        [HiddenInput]
+        public int OrganizationId { get; set; }
+
+        [ValidateNever]
+        public List<SelectListItem> Organizations { get; set; }
     }
 }

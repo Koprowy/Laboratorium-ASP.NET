@@ -43,5 +43,10 @@ namespace Laboratorium_3___App_ns
         {
             _context.Contacts.Update(ContactMapper.ToEntity(contact));
         }
+
+        public List<OrganizationEntity> FindAllOrganizationsForVieModel()
+        {
+            return _context.Organizations.ToList();
+        }
     }
 }

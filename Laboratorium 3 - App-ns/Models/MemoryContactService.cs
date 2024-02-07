@@ -1,4 +1,6 @@
-﻿namespace Laboratorium_3___App_ns.Models
+﻿using Data.Entities;
+
+namespace Laboratorium_3___App_ns.Models
 {
     public class MemoryContactService : IContactService
     {
@@ -10,6 +12,12 @@
         private int Id = 3;
         private readonly IDateTimeProvider _timeProvider;
 
+        private readonly List<OrganizationEntity> _organizations = new List<OrganizationEntity>()
+        {
+            new OrganizationEntity { Id = 1, Title = "WSEI", Regon = "Św. Filipa 17", Nip = "1241565"},
+            new OrganizationEntity { Id = 2, Title = "Kraków", Regon = "Św. Filipa 17", Nip = "12415125"}
+        };
+        
         public MemoryContactService(IDateTimeProvider timeProvider)
         {
             _timeProvider = timeProvider;
@@ -45,6 +53,10 @@
         public void Update(Contact contact)
         {
             _items[contact.Id] = contact;
+        }
+        public List<OrganizationEntity> FindAllOrganizationsForVieModel()
+        {
+            return _organizations;
         }
     }
 }

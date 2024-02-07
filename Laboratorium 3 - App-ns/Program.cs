@@ -1,5 +1,8 @@
 using Laboratorium_3___App_ns.Models;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Data;
 
 namespace Laboratorium_3___App_ns
 {
@@ -8,11 +11,19 @@ namespace Laboratorium_3___App_ns
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
 
-            // Add services to the container.
-            builder.Services.AddDbContext<Data.AppDbContext>();
+            builder.Services.AddRazorPages();
+            builder.Services.AddDbContext<Data.AppDbContext>(options =>
+            options.UseSqlite(connectionString));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
             builder.Services.AddTransient<IContactService, EFContactService>();
             builder.Services.AddTransient<IPhotoService, EFPhotoService>();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IContactService, MemoryContactService>();
             builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
@@ -33,8 +44,11 @@ namespace Laboratorium_3___App_ns
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
+            app.UseSession();
+            app.MapRazorPages();
 
             app.MapControllerRoute(
                 name: "default",

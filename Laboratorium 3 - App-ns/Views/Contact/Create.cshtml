@@ -31,6 +31,9 @@
     </div>
     <select class="form-control" asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
     </div>
+    <div class="form-group">
+        <select class="form-control" asp-for="OrganizationId" asp-items="@Model.Organizations"></select>
+    </div>
 
 
 </form>
